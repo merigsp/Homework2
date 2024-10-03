@@ -8,10 +8,10 @@ TARGET = complex_sort
 all: $(TARGET)
 
 $(TARGET): $(OBJ)
- $(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJ)
+	$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJ)
 
 %.o: %.cpp
- $(CXX) $(CXXFLAGS) -c $< -o $@
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
- rm -f $(OBJ) $(TARGET)
+	rm -f $(OBJ) $(TARGET)
