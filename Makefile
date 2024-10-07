@@ -1,17 +1,20 @@
 CXX = g++
 CXXFLAGS = -Wall -std=c++11
 
-SRC = main.cpp complex.cpp sort.cpp
-OBJ = $(SRC:.cpp=.o)
-TARGET = complex_sort
+all: complex_sort
+ 
+complex_sort: main.o complex.o sort.o
+	$(CXX) main.o complex.o sort.o -o complex_sort
+ 
+main.o: main.cpp complex.h
+	$(CXX) $(CXXFLAGS) -c main.cpp -o main.o
+ 
+complex.o: complex.cpp complex.h
+	$(CXX) $(CXXFLAGS) -c complex.cpp -o complex.o
 
-all: $(TARGET)
-
-$(TARGET): $(OBJ)
-	$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJ)
-
-%.o: %.cpp
-	$(CXX) $(CXXFLAGS) -c $< -o $@
-
+sort.o: sort.cpp sort.h
+	$(CXX) $(CXXFLAGS) -c sort.cpp -o sort.o
+ 
 clean:
-	rm -f $(OBJ) $(TARGET)
+	rm -f *.o complex_sort
+
